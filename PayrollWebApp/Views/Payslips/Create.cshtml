@@ -1,0 +1,75 @@
+﻿@using PayrollWebApp.Models;
+@using PayrollWebApp.Data;
+@model PayslipViewModel;
+
+@{
+    ViewData["Title"] = "Create Payslip";
+}
+
+<h2 style="padding-bottom: 25px">Create Payslip</h2>
+
+<form asp-action="Create" asp-route-employeeId="@Model.EmployeeId" method="post">
+
+    <div class="mb-3">
+        <input asp-for="EmployeeId" type="hidden" />
+        <input type="hidden" id="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" />
+    </div>
+
+    <div class="mb-3">
+    <label asp-for="EmployeeName" class="form-label">Employee Name</label>
+    <input asp-for="EmployeeName" type="text" class="form-control" disabled />
+    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+    <label asp-for="FormattedDailyRate" class="form-label">Daily Rate</label>
+        <input asp-for="FormattedDailyRate" type="text" class="form-control" disabled />
+    <span asp-validation-for="FormattedDailyRate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+    <label asp-for="DateStart" class="form-label">Start Period</label>
+    <input asp-for="DateStart" type="date" class="form-control" />
+    <span asp-validation-for="DateStart" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+    <label asp-for="DateEnd" class="form-label">Start Period</label>
+    <input asp-for="DateEnd" type="date" class="form-control" />
+    <span asp-validation-for="DateEnd" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+    <label class="form-label">Select Working Days</label>
+
+    <div class="form-check">
+    <input asp-for="WorkingDaysPattern" class="form-check-input" type="radio" value="MWF" id="pattern-mwf" checked/>
+    <label class="form-check-label" for="pattern-mwf">Mon, Wed, Fri</label>
+    </div>
+    <div class="form-check">
+    <input asp-for="WorkingDaysPattern" class="form-check-input" type="radio" value="TTHS" id="pattern-tths" />
+    <label class="form-check-label" for="pattern-tths">Tue, Thu, Sat</label>
+    </div>
+    </div>
+
+    <div class="mb-3">
+    <label asp-for="ActualWorkingDays" class="form-label">Number of Working Days</label>
+        <input asp-for="ActualWorkingDays" type="text" class="form-control" readonly />
+    <span asp-validation-for="ActualWorkingDays" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+    <label asp-for="NetPay" class="form-label">Take Home Pay</label>
+        <input asp-for="NetPay" type="text" class="form-control" readonly />
+    <span asp-validation-for="NetPay" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" asp-route-employeeId="@Model.EmployeeId" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script>
+const EMPLOYEE_API_URL = "@Const.API_BASE/@Const.EMPLOYEES_ENDPOINT";
+</script>
+
+<script src="~/js/site.js"></script>

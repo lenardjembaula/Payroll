@@ -1,0 +1,59 @@
+﻿@using PayrollWebApp.Models
+@model IEnumerable<EmployeeViewModel>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+@if (TempData["EmployeePageSuccess"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["EmployeePageSuccess"]
+    </div>
+}
+
+@if (TempData["EmployeePageError"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["EmployeePageError"]
+    </div>
+}
+
+<h2>Employees</h2>
+<div style="padding-bottom: 30px">
+    <a asp-action="Create" class="btn btn-primary">Add New Employee <i class="bi bi-person-add"></i></a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Employee Code</th>
+            <th>Full Name</th>
+            <th>Date of Birth</th>
+            <th style="text-align: center">Daily Rate</th>
+            <th style="text-align: center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.EmployeeCode</td>
+                <td>@emp.FirstName @emp.LastName</td>
+                <td>@emp.FormattedDoB</td>
+                <td style="text-align: center">@emp.FormattedDailyRate</td>
+                <td style="text-align: center">
+                    <a asp-action="Edit" asp-route-id="@emp.Id" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Payslips" asp-action="Index" asp-route-employeeId="@emp.Id" class="btn btn-secondary">Payslip</a>
+                    <form asp-action="Delete" asp-route-id="@emp.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this employee?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/js/site.js"></script>

@@ -1,0 +1,43 @@
+﻿@using PayrollWebApp.Models;
+@model EmployeeViewModel;
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h2>Edit Employee</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label">First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label">Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DoB" class="form-label">Date of Birth</label>
+        <input asp-for="DoB" type="date" class="form-control" />
+        <span asp-validation-for="DoB" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DailyRate" class="form-label">Daily Rate</label>
+        <input asp-for="DailyRate" type="number" class="form-control" />
+        <span asp-validation-for="DailyRate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
