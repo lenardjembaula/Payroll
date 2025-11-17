@@ -71,7 +71,7 @@
 
             // Second Part -00000 Random 5 numbers
             int rand = _random.Next(0, 100000); // from 0 up to 99999, 100k is not included
-            string middlePart = rand.ToString("D5"); // D5 means 5 digits
+            string middlePart = rand.ToString("D5"); // means convert the random number to 5 digit number eg. rand number = 293, it will become 00293
 
             // Last Part -14JUL1997
             string lastPart = dob.ToString("ddMMMyyyy").ToUpper();

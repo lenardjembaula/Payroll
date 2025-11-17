@@ -17,41 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     patternField.forEach(e => e.addEventListener("change", computeWorkingDays));
 
-    //computeWorkingDays();
+    computeWorkingDays();
 });
-
-function showSuccessMessage(message) {
-    Swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: message
-    });
-}
-
-function confirmDetele(url) {
-    Swal.fire({
-        title: 'Delete Record?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Delete'
-    }).then((result) => {
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-            }
-        }).then(response => {
-            if (response.ok) {
-                Swal.fire('Deleted!', 'Payslip has been deleted.', 'success')
-                    .then(() => location.reload());
-            } else {
-                Swal.fire('Error!', 'Failed to delete payslip.', 'error');
-            }
-        });
-    })
-}
 
 async function getEmployeeById() {
     try {

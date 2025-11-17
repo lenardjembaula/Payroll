@@ -69,10 +69,6 @@ namespace PayrollAPI.Controllers
                 payslip.WorkingDaysPattern
             );
 
-            // Compute GrossPay at NetPay (example, walang deductions)
-            //payslip.GrossPay = employee.DailyRate * payslip.ActualWorkingDays;
-            //payslip.NetPay = payslip.GrossPay - payslip.Deduction;
-
             _context.Payslips.Add(payslip);
             await _context.SaveChangesAsync();
             return Ok(payslip);
