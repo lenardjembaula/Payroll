@@ -5,7 +5,7 @@ using PayrollWebApp.Models;
 
 namespace PayrollWebApp.Services
 {
-    public class PayslipApiService
+    public class PayslipApiService : IPayslipApiService
     {
         private readonly HttpClient _httpClient;
         public PayslipApiService(HttpClient httpClient)

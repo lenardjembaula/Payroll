@@ -13,8 +13,8 @@ var apiBase = builder.Configuration[Const.API_BASE_URL];
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
-builder.Services.AddHttpClient<EmployeeApiService>(client => client.BaseAddress = new Uri(apiBase));
-builder.Services.AddHttpClient<PayslipApiService>(client => client.BaseAddress = new Uri(apiBase));
+builder.Services.AddHttpClient<IEmployeeApiService, EmployeeApiService>(client => client.BaseAddress = new Uri(apiBase));
+builder.Services.AddHttpClient<IPayslipApiService, PayslipApiService>(client => client.BaseAddress = new Uri(apiBase));
 
 
 var app = builder.Build();

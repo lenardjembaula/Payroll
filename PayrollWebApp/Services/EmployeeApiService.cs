@@ -3,8 +3,7 @@ using PayrollWebApp.Data;
 
 namespace PayrollWebApp.Services
 {
-    // This is the class for consuming the API/Employees
-    public class EmployeeApiService
+    public class EmployeeApiService : IEmployeeApiService
     {
         private readonly HttpClient _httpClient;
 

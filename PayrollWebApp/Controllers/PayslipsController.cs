@@ -8,10 +8,10 @@ namespace PayrollWebApp.Controllers
     public class PayslipsController : Controller
     {
 
-        private readonly PayslipApiService _payslipApiService;
-        private readonly EmployeeApiService _employeeApiService;
+        private readonly IPayslipApiService _payslipApiService;
+        private readonly IEmployeeApiService _employeeApiService;
 
-        public PayslipsController(PayslipApiService payslipApiService, EmployeeApiService employeeApiService)
+        public PayslipsController(IPayslipApiService payslipApiService, IEmployeeApiService employeeApiService)
         {
             _payslipApiService = payslipApiService;
             _employeeApiService = employeeApiService;

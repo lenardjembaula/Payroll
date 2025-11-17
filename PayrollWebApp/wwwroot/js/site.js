@@ -54,14 +54,14 @@ async function computeTakeHomePay() {
     const dailyRate = parseNumber(document.querySelector("#FormattedDailyRate").value);
     const numberOfWorkingDays = parseNumber(document.querySelector("#ActualWorkingDays").value);
     const dateOfBirth = new Date(document.querySelector("#DateOfBirth").value);
-    const startDate = new Date(document.querySelector("#DateStart").value);
-    const endDate = new Date(document.querySelector("#DateEnd").value);
+    const startDate = new Date(new Date(document.querySelector("#DateStart").value).toDateString());
+    const endDate = new Date(new Date(document.querySelector("#DateEnd").value).toDateString());
 
     let gross = dailyRate * (numberOfWorkingDays * 2);
 
     const dobMonth = dateOfBirth.getMonth();
     const dobDay = dateOfBirth.getDate();
-    const dobThisYear = new Date(startDate.getFullYear(), dobMonth, dobDay);
+    const dobThisYear = new Date(new Date(startDate.getFullYear(), dobMonth, dobDay).toDateString());
 
     // If date of birth is inside start and end date
     if (dobThisYear >= startDate && dobThisYear <= endDate) {

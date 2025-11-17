@@ -7,9 +7,9 @@ namespace PayrollWebApp.Controllers
 {
     public class EmployeesController : Controller
     {
-        private readonly EmployeeApiService _employeeApiService;
+        private readonly IEmployeeApiService _employeeApiService;
 
-        public EmployeesController(EmployeeApiService apiService)
+        public EmployeesController(IEmployeeApiService apiService)
         {
             _employeeApiService = apiService;
         }
