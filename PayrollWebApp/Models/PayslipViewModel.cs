@@ -26,9 +26,10 @@ namespace PayrollWebApp.Models
 
         // For Frontend and computation
         public string? EmployeeName { get; set; } = default!;
-        public float DailyRate { get; set; }
-        public string FormattedDailyRate => DailyRate.ToString("#,###0.00");
-        public DateTime DateOfBirth { get; set; }
+        public float? DailyRate { get; set; }
+        public string FormattedDailyRate =>DailyRate.HasValue ? DailyRate.Value.ToString("#,###0.00") : string.Empty;
+        public DateTime? DateOfBirth { get; set; }
+        public string FormattedDateOfBirth => DateOfBirth.HasValue ? DateOfBirth.Value.ToString("yyyy-MM-dd") : string.Empty;
 
     }
 }
