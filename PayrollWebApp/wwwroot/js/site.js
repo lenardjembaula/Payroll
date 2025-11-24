@@ -42,10 +42,6 @@ function getEmployeeId() {
     return urlParts[urlParts.length - 1];
 }
 
-function confirmDelete() {
-    return confirm('Are you sure you want to delete this employee?');
-}
-
 function parseNumber(value) {
     return parseFloat(value.replace(/,/g, '')) || 0;
 }
