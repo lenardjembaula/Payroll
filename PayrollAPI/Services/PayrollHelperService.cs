@@ -85,13 +85,7 @@ namespace PayrollAPI.Services
 
         public float ComputeTakeHomePay(int actualWorkingDays, bool isDoB, float dailyRate)
         {
-            float takeHomePay = 0;
-            float grossPay = 0;
-
-            if (actualWorkingDays != 0)
-                grossPay = dailyRate * 2;
-
-            takeHomePay = actualWorkingDays * grossPay;
+            float takeHomePay = (dailyRate * 2) * actualWorkingDays;
 
             if (isDoB)
                 takeHomePay += dailyRate;
