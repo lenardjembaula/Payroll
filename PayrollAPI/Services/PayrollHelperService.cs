@@ -1,4 +1,4 @@
-﻿namespace PayrollAPI.Services
+namespace PayrollAPI.Services
 {
     public class PayrollHelperService
     {
@@ -81,6 +81,23 @@
 
             return returnThis;
 
+        }
+
+        public float ComputeTakeHomePay(int actualWorkingDays, bool isDoB, float dailyRate)
+        {
+            float takeHomePay = 0;
+            float grossPay = 0;
+
+            if (actualWorkingDays != 0)
+                grossPay = dailyRate * 2;
+
+            takeHomePay = actualWorkingDays * grossPay;
+
+            if (isDoB)
+                takeHomePay += dailyRate;
+
+            return takeHomePay;
+            
         }
     }
 }
