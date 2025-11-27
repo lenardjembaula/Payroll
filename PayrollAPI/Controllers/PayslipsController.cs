@@ -69,6 +69,11 @@ namespace PayrollAPI.Controllers
                 payslip.WorkingDaysPattern
             );
 
+
+            payslip.NetPay = _helper.ComputeTakeHomePay(payslip.ActualWorkingDays,
+                                                        _helper.isDoB(employee.DoB, payslip.DateStart, payslip.DateEnd),
+                                                        employee.DailyRate);
+
             _context.Payslips.Add(payslip);
             await _context.SaveChangesAsync();
             return Ok(payslip);
@@ -90,7 +95,9 @@ namespace PayrollAPI.Controllers
                 payslip.WorkingDaysPattern
             );
 
-            payslip.NetPay = updatedPayslip.NetPay;
+            payslip.NetPay = _helper.ComputeTakeHomePay(payslip.ActualWorkingDays,
+                                                        _helper.isDoB(payslip.Employee.DoB, payslip.DateStart, payslip.DateEnd),
+                                                        payslip.Employee.DailyRate);
 
             await _context.SaveChangesAsync();
             return Ok(payslip);

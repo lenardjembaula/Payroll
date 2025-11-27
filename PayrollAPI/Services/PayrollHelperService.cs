@@ -94,5 +94,15 @@ namespace PayrollAPI.Services
             return takeHomePay;
             
         }
+
+        public bool isDoB(DateTime dateOfBirth, DateTime startDate, DateTime endDate)
+        {
+            DateTime dobThisYear = new DateTime (startDate.Year, dateOfBirth.Month, dateOfBirth.Day);
+
+            if (dobThisYear >= startDate && dobThisYear <= endDate)
+                return true;
+
+            return false;
+        }
     }
 }

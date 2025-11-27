@@ -10,6 +10,7 @@ namespace PayrollAPI.Entities
         public DateTime DateEnd { get; set; }
         public string WorkingDaysPattern { get; set; } = default!;
         public int ActualWorkingDays { get; set; }
+
         public float NetPay { get; set; }
 
         // Navigation Property
