@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PayrollAPI.Data;
 using PayrollAPI.Entities;
@@ -60,7 +60,7 @@ namespace PayrollAPI.Controllers
         {
             // Kunin employee para sa DailyRate
             var employee = await _context.Employees.FindAsync(payslip.EmployeeId);
-            if (employee == null) return BadRequest("Employee not found");
+            if (employee == null) return NotFound();
 
             // Compute ActualWorkingDays
             payslip.ActualWorkingDays = _helper.ComputeActualWorkingDays(
