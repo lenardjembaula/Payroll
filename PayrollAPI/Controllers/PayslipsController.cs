@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PayrollAPI.Data;
 using PayrollAPI.Entities;
 using PayrollAPI.Services;
@@ -95,8 +96,10 @@ namespace PayrollAPI.Controllers
                 payslip.WorkingDaysPattern
             );
 
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Id == payslip.EmployeeId);
+
             payslip.NetPay = _helper.ComputeTakeHomePay(payslip.ActualWorkingDays,
-                                                        _helper.isDoB(payslip.Employee.DoB, payslip.DateStart, payslip.DateEnd),
+                                                        _helper.isDoB(employee.DoB, payslip.DateStart, payslip.DateEnd),
                                                         payslip.Employee.DailyRate);
 
             await _context.SaveChangesAsync();
